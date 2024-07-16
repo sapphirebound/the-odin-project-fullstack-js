@@ -1,15 +1,38 @@
 /* General setup */
+@font-face {
+    font-family: 'amblebold';
+    src: url('fonts/amble-bold-webfont.woff2') format('woff2'),
+        url('fonts/amble-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'pt_sans_captionregular';
+    src: url('fonts/ptc55f-webfont.woff2') format('woff2'),
+        url('fonts/ptc55f-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 html {
     font-size: 10px;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'amblebold', sans-serif;
+    font-weight: bolder;
 }
 
 body {
     width: 80%;
     max-width: 800px;
     margin: 0 auto;
+    font-family: 'pt_sans_captionregular', sans-serif;
 }
 
 /* Typography */
