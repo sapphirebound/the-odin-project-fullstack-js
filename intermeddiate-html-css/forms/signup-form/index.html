@@ -19,43 +19,44 @@
                 Unsplash</a></span>
     </div>
     <div class="content">
-        <div class="top">
+        <div class="not-form" id="top">
             <p>This is a sample form</p>
         </div>
         <div class="form">
-            <h1>Form Input</h1>
             <form>
+                <h1>Form Input</h1>
                 <section>
                     <p>
-                        <label for=""></label>
-                        <input type="text">
+                        <label for="">First Name</label>
+                        <input type="text" id="firstName" minlength="3" required />
                     </p>
                     <p>
-                        <label for=""></label>
-                        <input type="text">
+                        <label for="">Last Name</label>
+                        <input type="text" id="lastName" minlength="3" required />
                     </p>
                     <p>
-                        <label for=""></label>
-                        <input type="text">
+                        <label for="">Email</label>
+                        <input type="email" id="email" minlength="3" required />
                     </p>
                     <p>
-                        <label for=""></label>
-                        <input type="text">
+                        <label for="">Phone Number</label>
+                        <input type="tel" id="tel" minlength="3" required />
                     </p>
                     <p>
-                        <label for=""></label>
-                        <input type="text">
+                        <label for="">Password</label>
+                        <input type="password" id="pwd" minlength="6" required />
                     </p>
                     <p>
-                        <label for=""></label>
-                        <input type="text">
+                        <label for="">Confirm Password</label>
+                        <input type="password" id="pwdConfirm" minlength="6" required />
                     </p>
                 </section>
-            </form>
         </div>
-        <div class="bottom">
+        <div class="not-form" id="bottom">
             <button type="submit">Create Account</button>
-            <span>Already have an account?<a href="login">Log In</a></span>
+            </form>
+
+            <span>Already have an account? <a href="login">Log In</a></span>
         </div>
     </div>
 </body>
