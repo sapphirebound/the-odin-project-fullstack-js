@@ -48,6 +48,28 @@ div {
 .header {
     grid-area: header;
     background-color: blanchedalmond;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.header .top {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.header .bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.header .bottom .hello {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.header .bottom .buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .main-content {
