@@ -1,7 +1,19 @@
 body,
-div {
+div,
+h1,
+h2,
+p,
+img,
+a {
     padding: 0;
     margin: 0;
+}
+
+:root {
+    --green-sidebar: #24C7A8;
+    --green-button: #08A988;
+    --white: #FDFDFE;
+    --grey: #D0D0D8;
 }
 
 .container {
@@ -17,7 +29,7 @@ div {
 
 .sidebar {
     grid-area: sidebar;
-    background-color: firebrick;
+    background-color: var(--green-sidebar);
     display: grid;
     grid-template-rows: 1fr 3fr 2fr;
     grid-template-areas:
@@ -43,11 +55,12 @@ div {
 .sidebar .logo {
     display: grid;
     grid-template-columns: 1fr 3fr;
+    gap: 10px
 }
 
 .header {
     grid-area: header;
-    background-color: blanchedalmond;
+    background-color: var(--white);
     display: grid;
     grid-template-rows: 1fr 2fr;
 }
@@ -79,11 +92,22 @@ div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+    gap: calc(10px + 0.5em);
+}
+
+button {
+    border-radius: 3ch;
+    border-style: none;
+    height: 2.5em;
+    width: 6em;
+    background-color: var(--green-button);
+    color: var(--white);
+    font-weight: bold;
 }
 
 .main-content {
     grid-area: main-content;
-    background-color: aqua;
+    background-color: var(--grey);
     grid-template-columns: 3fr 1fr;
     display: grid;
 
@@ -92,15 +116,120 @@ div {
 .card-container {
     grid-area: 1/1/1/1;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(5px + 1em);
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 0.5ch;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas:
+        'card-title'
+        'card-description'
+        'card-buttons';
+    height: calc(230px + 5vh);
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.card>p:first-of-type {
+    grid-area: card-title;
+    align-self: end;
+    font-weight: bold;
+    padding-top: calc(15px + 1em);
+}
+
+.card>p:last-of-type {
+    grid-area: card-description;
+    align-self: top;
+}
+
+.card>div {
+    grid-area: card-buttons;
+    align-self: end;
+    justify-self: end;
 }
 
 .main-content>.right {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .right>* {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.announcements>div {
+    background-color: var(--white);
+    border-color: grey;
+    border-width: 1px;
+    border-radius: 0.5ch;
+    padding: calc(15px + 1em) calc(10px + 1em);
+    display: flex;
+    flex-direction: column;
+    gap: calc(5px + 1em)
+}
+
+.announcement>p:first-of-type {
+    font-weight: bold;
+}
+
+.announcements>div>div:not(:last-child) {
+    border-bottom: 1px solid grey;
+    padding-bottom: calc(5px + 1em);
+}
+
+.info-container {
+    background-color: var(--white);
+    border-color: grey;
+    border-width: 1px;
+    border-style: solid;
+    padding: calc(10px + 1em) calc(5px + 0.5em);
+}
+
+.person {
     display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+        'img p1'
+        'img p2';
+    justify-content: center;
+    align-items: center;
+    gap: calc(5px + 0.5em);
+    padding: 10px;
+
+}
+
+.person>img {
+    grid-area: img;
+    height: calc(5px + 4em);
+    border-radius: 25ch;
+}
+
+.person>p:first-of-type {
+    grid-area: p1;
+    align-self: end;
+}
+
+.person>p:last-child {
+    grid-area: p2;
+    align-self: start;
+}
+
+.icon,
+.navicon,
+.logo {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.navicon {
+    filter: invert(99%) sepia(12%) saturate(346%) hue-rotate(181deg) brightness(100%) contrast(99%);
 }
