@@ -75,4 +75,23 @@ div {
 .main-content {
     grid-area: main-content;
     background-color: aqua;
+    grid-template-columns: 3fr 1fr;
+    display: grid;
+
+}
+
+.card-container {
+    grid-area: 1/1/1/1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.main-content>.right {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.right>* {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
 }
