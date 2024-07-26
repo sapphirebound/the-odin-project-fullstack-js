@@ -49,7 +49,7 @@ div {
     grid-area: header;
     background-color: blanchedalmond;
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr 2fr;
 }
 
 .header .top {
@@ -57,19 +57,28 @@ div {
     grid-template-columns: 3fr 1fr;
 }
 
+.header>.top>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+}
+
 .header .bottom {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 
-.header .bottom .hello {
+.bottom>.hello {
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
 }
 
 .header .bottom .buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: center;
 }
 
 .main-content {
