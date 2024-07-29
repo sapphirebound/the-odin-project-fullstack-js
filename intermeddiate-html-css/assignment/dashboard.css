@@ -74,6 +74,7 @@ a {
     background-color: var(--white);
     display: grid;
     grid-template-rows: 1fr 1.5fr;
+    padding: 0 calc(30px + 1em) 0 calc(20px + 1em);
 }
 
 .header .top {
@@ -283,7 +284,9 @@ button {
 h1,
 h2,
 h3,
-p {
+p,
+button,
+input {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -296,5 +299,23 @@ h2 {
 }
 
 p {
+    font-size: 1.25em;
+}
+
+button {
     font-size: 1em;
+    font-weight: 800;
+}
+
+.top-profile>p {
+    font-weight: bold;
+    text-wrap: nowrap;
+}
+
+.greeting>p {
+    font-weight: bold;
+}
+
+.greeting>p:last-child {
+    font-size: 2em;
 }
