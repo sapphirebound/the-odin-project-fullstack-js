@@ -183,7 +183,7 @@ button {
     background-color: var(--white);
     border-radius: 0.5ch;
     display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(20px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(30px, 1fr));
     grid-template-areas: 'card-title'
         'card-description'
         'card-buttons';
@@ -197,6 +197,7 @@ button {
 .card>p:first-of-type {
     grid-area: card-title;
     font-weight: bold;
+    align-self: end;
 }
 
 .card>p:last-of-type {
@@ -313,7 +314,12 @@ h2 {
 }
 
 p {
-    font-size: 1.25em;
+    font-size: 1em;
+}
+
+p.card-title {
+    font-weight: bolder;
+    font-size: 1.25em
 }
 
 button {
