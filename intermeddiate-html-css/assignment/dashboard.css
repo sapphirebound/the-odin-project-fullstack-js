@@ -88,6 +88,28 @@ a {
     align-items: center;
 }
 
+.header>.top>.search>img {
+    height: calc();
+}
+
+.header>.top>.search>input[type=search] {
+    box-sizing: border-box;
+    width: 75%;
+    height: calc(25px + 1em);
+    border-radius: 5ch;
+    border-style: none;
+    background-color: var(--grey);
+}
+
+.header>.top>.top-profile {
+    justify-self: end;
+    gap: calc(10px + 1em);
+}
+
+.header>.top>.top-profile>img {
+    border-radius: 25ch;
+}
+
 .header .bottom {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -249,8 +271,7 @@ button {
 .icon,
 .navicon,
 .logo {
-    height: 1.5em;
-    width: 1.5em;
+    height: calc(20px + 1em);
 }
 
 .navicon {
