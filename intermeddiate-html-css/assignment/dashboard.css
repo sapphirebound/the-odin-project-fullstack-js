@@ -28,7 +28,7 @@ a {
 .container {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-rows: 1fr 6fr;
     grid-template-areas:
         'sidebar header'
         'sidebar main-content';
@@ -73,8 +73,7 @@ a {
     grid-area: header;
     background-color: var(--white);
     display: grid;
-    grid-template-rows: 1fr 2fr;
-    height: 10vh;
+    grid-template-rows: 1fr 1.5fr;
 }
 
 .header .top {
@@ -92,26 +91,40 @@ a {
 .header .bottom {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 350px
 }
 
 .bottom>.hello {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 6fr;
     align-items: center;
+    gap: 30px
+}
+
+.hello>img {
+    justify-self: end;
+    height: calc(100px + 1em);
+    border-radius: 25ch;
+}
+
+.hello>div {
+    justify-self: start;
 }
 
 .header .bottom .buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
     align-items: center;
-    gap: calc(10px + 0.5em);
+    justify-items: center;
+    gap: calc(10px + 0.25em);
 }
 
 button {
     border-radius: 3ch;
     border-style: none;
-    height: 2.5em;
-    width: 6em;
+    height: calc(25px + 1em);
+    width: calc(75px + 2em);
     background-color: var(--green-button);
     color: var(--white);
     font-weight: bold;
