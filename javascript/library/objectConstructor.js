@@ -17,6 +17,7 @@ const sampleBook = new Book('id', 'title', 'author', 'pages');
 
 function addBookToLibrary(title, author, pages) {
     let bookID = myLibrary.length > 0 ? myLibrary.length : 0; //check if library length is not 0
+    bookID = 'BookID-' + String(bookID);
     const entry = new Book(bookID, title, author, pages);
     myLibrary.push(entry);
 }
