@@ -99,9 +99,9 @@ function updateTable() {
                 continue;
             }
             else {
-            let newCell = newRow.insertCell(cellCount);
-            newCell.textContent = entry[e];
-            cellCount += 1;
+                let newCell = newRow.insertCell(cellCount);
+                newCell.textContent = entry[e];
+                cellCount += 1;
             }
         };
         let actions = newRow.insertCell(cellCount);
@@ -121,7 +121,7 @@ function deleteRow(e) {
             .map((x) => { return x.id; }) //returns array of book IDs
             .indexOf(rowDeleteID); //find index of row to delete
         myLibrary.splice(indexToDelete, 1); // removes the entry
-updateTable();
+        updateTable();
 
     }
 };
