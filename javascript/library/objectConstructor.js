@@ -12,6 +12,9 @@ function Book(id, title, author, pages) {
     this.pages = pages;
 }
 
+// create sample book to loop through
+const sampleBook = new Book('id', 'title', 'author', 'pages');
+
 function addBookToLibrary(id, title, author, pages) {
     const entry = new Book(id, title, author, pages);
     myLibrary.push(entry);
@@ -20,7 +23,7 @@ function addBookToLibrary(id, title, author, pages) {
 // test entry
 addBookToLibrary(0, '123', 'def', 123);
 
-// Function to auto-add delete button
+// Function to auto-add action buttons
 function actionButtons() {
     const actionDiv = document.createElement("div");
     const deleteButton = document.createElement("button");
@@ -28,6 +31,33 @@ function actionButtons() {
     actionDiv.appendChild(deleteButton);
     return actionDiv;
 }
+
+// new book button
+const addButton = document.createElement("button");
+addButton.textContent = "Add Book to Library";
+body.appendChild(addButton);
+
+// book submission form
+const form = document.createElement('form');
+
+// adding input fields
+let input = '';
+for (property in Object.getOwnPropertyNames(sampleBook)) {
+    const formKey = Object.getOwnPropertyNames(sampleBook)[property];
+    input += `<div><label for='${formKey}'>${formKey}</label><input type='text' id='${formKey}' name='${formKey}' /></div>`;
+}
+input += `<input type='submit' value='Add Book' />`;
+form.innerHTML = input;
+
+// submit button
+const formSubmit = document.createElement('input');
+
+
+// Click add to show form
+addButton.addEventListener("click", (e) => {
+    // show modal or dialog
+    body.appendChild(form);
+});
 
 // add entries to table
 myLibrary.forEach((entry) => {
