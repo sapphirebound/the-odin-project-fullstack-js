@@ -29,6 +29,7 @@ addBookToLibrary('123', 'def', 123);
 function actionButtons() {
     const actionDiv = document.createElement("div");
     const deleteButton = document.createElement("button");
+    deleteButton.id = 'deleteButton';
     deleteButton.textContent = "delete";
     actionDiv.appendChild(deleteButton);
     return actionDiv;
@@ -72,9 +73,8 @@ addButton.addEventListener("click", (e) => {
 // submit button
 const formSubmit = document.querySelector('input[type="submit"]');
 
-// form submit
-
-form.addEventListener('submit', (e) => {
+// form submit action
+function addBook(e) {
     e.preventDefault(); //disable sending data to server
     const userTitle = document.querySelector('input#title').value;
     const userAuthor = document.querySelector('input#author').value;
@@ -83,7 +83,8 @@ form.addEventListener('submit', (e) => {
     updateTable();
     form.reset();
     formDialog.close();
-});
+};
+form.addEventListener('submit', addBook);
 
 // add entries to table
 function updateTable() {
@@ -109,4 +110,22 @@ function updateTable() {
     );
 }
 
+updateTable(); //draw table on load
+
+// delete button action
+function deleteRow(e) {
+    const target = e.target.closest('button#deleteButton'); //targets delete button of the row
+    if (target) {
+        const rowDeleteID = target.closest('tr').id;
+        const indexToDelete = myLibrary
+            .map((x) => { return x.id; }) //returns array of book IDs
+            .indexOf(rowDeleteID); //find index of row to delete
+        myLibrary.splice(indexToDelete, 1); // removes the entry
 updateTable();
+
+    }
+};
+tbody.addEventListener('click', deleteRow);
+
+
+
