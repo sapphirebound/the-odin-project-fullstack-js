@@ -52,11 +52,16 @@ form.innerHTML = input;
 // submit button
 const formSubmit = document.createElement('input');
 
+//create dialog to contain form
+const formDialog = document.createElement('dialog');
+formDialog.className = 'addBookForm';
+formDialog.appendChild(form);
+
+body.appendChild(formDialog);
 
 // Click add to show form
 addButton.addEventListener("click", (e) => {
-    // show modal or dialog
-    body.appendChild(form);
+    formDialog.show();
 });
 
 // add entries to table
