@@ -71,6 +71,8 @@ addButton.addEventListener("click", (e) => {
 });
 
 // add entries to table
+function updateTable() {
+    tbody.innerHTML = '';
 myLibrary.forEach((entry) => {
     let newRow = tbody.insertRow(entry.id);
     let cellCount = 0;
@@ -83,3 +85,6 @@ myLibrary.forEach((entry) => {
     actions.appendChild(actionButtons());
 }
 );
+}
+
+updateTable();
