@@ -45,7 +45,12 @@ const form = document.createElement('form');
 let input = '';
 for (property in Object.getOwnPropertyNames(sampleBook)) {
     const formKey = Object.getOwnPropertyNames(sampleBook)[property];
+    if (formKey === 'id') {
+        continue;
+    }
+    else {
     input += `<div><label for='${formKey}'>${formKey}</label><input type='text' id='${formKey}' name='${formKey}' /></div>`;
+}
 }
 input += `<input type='submit' value='Add Book' />`;
 form.innerHTML = input;
