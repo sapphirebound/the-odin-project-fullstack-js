@@ -15,13 +15,14 @@ function Book(id, title, author, pages) {
 // create sample book to loop through
 const sampleBook = new Book('id', 'title', 'author', 'pages');
 
-function addBookToLibrary(id, title, author, pages) {
-    const entry = new Book(id, title, author, pages);
+function addBookToLibrary(title, author, pages) {
+    let bookID = myLibrary.length > 0 ? myLibrary.length + 1 : 0; //check if library length is not 0
+    const entry = new Book(bookID, title, author, pages);
     myLibrary.push(entry);
 }
 
 // test entry
-addBookToLibrary(0, '123', 'def', 123);
+addBookToLibrary(]'123', 'def', 123);
 
 // Function to auto-add action buttons
 function actionButtons() {
