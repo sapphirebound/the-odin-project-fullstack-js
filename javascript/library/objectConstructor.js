@@ -89,12 +89,19 @@ form.addEventListener('submit', (e) => {
 function updateTable() {
     tbody.innerHTML = '';
     myLibrary.forEach((entry) => {
-        let newRow = tbody.insertRow(entry.id);
+        const entryID = entry.id;
+        let newRow = tbody.insertRow(entryID);
+        newRow.id = entryID; //assign bookID to row
         let cellCount = 0;
         for (const e in entry) {
+            if (e === 'id') {
+                continue;
+            }
+            else {
             let newCell = newRow.insertCell(cellCount);
             newCell.textContent = entry[e];
             cellCount += 1;
+            }
         };
         let actions = newRow.insertCell(cellCount);
         actions.appendChild(actionButtons());
