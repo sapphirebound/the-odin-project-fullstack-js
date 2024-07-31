@@ -1,5 +1,6 @@
 const myLibrary = [];
-const body = document.querySelector('body');
+const body = document.querySelector('body>div');
+console.log(body);
 const tbody = document
     .getElementById('libraryTable')
     .getElementsByTagName('tbody')[0];
@@ -122,6 +123,7 @@ function updateTable() {
             }
             else {
                 let newCell = newRow.insertCell(cellCount);
+                newCell.id = e;
                 newCell.textContent = entry[e];
                 cellCount += 1;
             }
