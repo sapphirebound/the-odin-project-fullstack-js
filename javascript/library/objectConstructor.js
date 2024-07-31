@@ -24,7 +24,7 @@ function addBookToLibrary(title, author, pages, status) {
 }
 
 // test entry
-addBookToLibrary('123', 'def', 123, "Read");
+addBookToLibrary('123', 'def', 123, "read");
 
 // Function to auto-add action buttons
 function actionButtons() {
@@ -67,7 +67,7 @@ for (property in Object.getOwnPropertyNames(sampleBook)) {
         <input type='radio' id='read' name='${formKey}' />
         <label for='read'>Read</label><br>
         <input type='radio' id='unread' name='${formKey}' />
-        <label for='read'>Not Read</label>`;
+        <label for='unread'>Not Read</label>`;
     }
     else {
         input += `<label for='${formKey}'>${formKey}</label>
@@ -116,7 +116,7 @@ function updateTable() {
         let cellCount = 0;
         for (const e in entry) {
             if (e === 'id') {
-                continue;
+                continue; //skips adding bookID property as table data
             }
             else {
                 let newCell = newRow.insertCell(cellCount);
@@ -145,6 +145,24 @@ function deleteRow(e) {
 
     }
 };
+
+// update button action
+function updateStatus(e) {
+    const target = e.target.closest('button#updateReadButton');
+    if (target) {
+        const rowUpdateID = target.closest('tr').id;
+        const indexToUpdate = myLibrary
+            .map((x) => { return x.id; }) //returns array of book IDs
+            .indexOf(rowUpdateID); //find index of row to delete
+        let bookStatus = myLibrary[indexToUpdate].status;
+        myLibrary[indexToUpdate].status =
+            //conditional to check current status
+            bookStatus == 'read' ? 'unread' : 'read';
+        updateTable();
+    }
+}
+
+tbody.addEventListener('click', updateStatus);
 tbody.addEventListener('click', deleteRow);
 
 
