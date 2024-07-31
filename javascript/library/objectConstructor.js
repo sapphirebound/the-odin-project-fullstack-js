@@ -5,25 +5,26 @@ const tbody = document
     .getElementsByTagName('tbody')[0];
 
 
-function Book(id, title, author, pages) {
+function Book(id, title, author, pages, status) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.pages = Number(pages);
+    this.status = status;
 }
 
 // create sample book to loop through
 const sampleBook = new Book('id', 'title', 'author', 'pages');
 
-function addBookToLibrary(title, author, pages) {
+function addBookToLibrary(title, author, pages, status) {
     let bookID = myLibrary.length > 0 ? myLibrary.length : 0; //check if library length is not 0
     bookID = 'BookID-' + String(bookID);
-    const entry = new Book(bookID, title, author, pages);
+    const entry = new Book(bookID, title, author, pages, status);
     myLibrary.push(entry);
 }
 
 // test entry
-addBookToLibrary('123', 'def', 123);
+addBookToLibrary('123', 'def', 123, "Read");
 
 // Function to auto-add action buttons
 function actionButtons() {
