@@ -28,10 +28,19 @@ addBookToLibrary('123', 'def', 123);
 // Function to auto-add action buttons
 function actionButtons() {
     const actionDiv = document.createElement("div");
+
+    //adding delete button
     const deleteButton = document.createElement("button");
     deleteButton.id = 'deleteButton';
     deleteButton.textContent = "delete";
+
+    //adding edit button
+    const updateReadButton = document.createElement("button");
+    updateReadButton.id = 'updateReadButton';
+    updateReadButton.textContent = "Read";
+
     actionDiv.appendChild(deleteButton);
+    actionDiv.appendChild(updateReadButton);
     return actionDiv;
 }
 
