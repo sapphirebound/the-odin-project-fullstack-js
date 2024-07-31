@@ -132,15 +132,22 @@ function updateTable() {
 
 updateTable(); //draw table on load
 
+//get book from table function
+function getBook(target) {
+    const rowID = target.closest('tr').id;
+    const bookIndex = myLibrary
+        .map((x) => { return x.id; }) //returns array of book IDs
+        .indexOf(rowID); //find index of row to delete
+    return bookIndex;
+}
+
+
 // delete button action
 function deleteRow(e) {
     const target = e.target.closest('button#deleteButton'); //targets delete button of the row
     if (target) {
-        const rowDeleteID = target.closest('tr').id;
-        const indexToDelete = myLibrary
-            .map((x) => { return x.id; }) //returns array of book IDs
-            .indexOf(rowDeleteID); //find index of row to delete
-        myLibrary.splice(indexToDelete, 1); // removes the entry
+        const bookIndex = getBook(target);
+        myLibrary.splice(bookIndex, 1); // removes the entry
         updateTable();
 
     }
@@ -150,10 +157,7 @@ function deleteRow(e) {
 function updateStatus(e) {
     const target = e.target.closest('button#updateReadButton');
     if (target) {
-        const rowUpdateID = target.closest('tr').id;
-        const indexToUpdate = myLibrary
-            .map((x) => { return x.id; }) //returns array of book IDs
-            .indexOf(rowUpdateID); //find index of row to delete
+        const bookIndex = getBook(target);
         let bookStatus = myLibrary[indexToUpdate].status;
         myLibrary[indexToUpdate].status =
             //conditional to check current status
@@ -164,6 +168,3 @@ function updateStatus(e) {
 
 tbody.addEventListener('click', updateStatus);
 tbody.addEventListener('click', deleteRow);
-
-
-
