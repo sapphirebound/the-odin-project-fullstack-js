@@ -14,7 +14,7 @@ function Book(id, title, author, pages, status) {
 }
 
 // create sample book to loop through
-const sampleBook = new Book('id', 'title', 'author', 'pages');
+const sampleBook = new Book('id', 'title', 'author', 'pages', 'status');
 
 function addBookToLibrary(title, author, pages, status) {
     let bookID = myLibrary.length > 0 ? myLibrary.length : 0; //check if library length is not 0
@@ -38,6 +38,8 @@ function actionButtons() {
     //adding edit button
     const updateReadButton = document.createElement("button");
     updateReadButton.id = 'updateReadButton';
+
+    //conditional to check if book is read or not and update status
     updateReadButton.textContent = "Read";
 
     actionDiv.appendChild(deleteButton);
@@ -60,8 +62,16 @@ for (property in Object.getOwnPropertyNames(sampleBook)) {
     if (formKey === 'id') {
         continue;
     }
+    if (formKey === 'status') {
+        input += `<label for='${formKey}'>${formKey}</label>
+        <input type='radio' id='read' name='${formKey}' />
+        <label for='read'>Read</label><br>
+        <input type='radio' id='unread' name='${formKey}' />
+        <label for='read'>Not Read</label>`;
+    }
     else {
-        input += `<label for='${formKey}'>${formKey}</label><input type='text' id='${formKey}' name='${formKey}' />`;
+        input += `<label for='${formKey}'>${formKey}</label>
+        <input type='text' id='${formKey}' name='${formKey}' />`;
     }
 }
 input += `<input type='submit' value='Add Book' />`;
