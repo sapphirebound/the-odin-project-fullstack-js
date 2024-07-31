@@ -64,9 +64,9 @@ for (property in Object.getOwnPropertyNames(sampleBook)) {
     }
     if (formKey === 'status') {
         input += `<label for='${formKey}'>${formKey}</label>
-        <input type='radio' id='read' name='${formKey}' />
+        <input type='radio' id='read' name='${formKey}' value='read'/>
         <label for='read'>Read</label><br>
-        <input type='radio' id='unread' name='${formKey}' />
+        <input type='radio' id='unread' name='${formKey}' value='unread'/>
         <label for='unread'>Not Read</label>`;
     }
     else {
@@ -99,11 +99,13 @@ function addBook(e) {
     const userTitle = document.querySelector('input#title').value;
     const userAuthor = document.querySelector('input#author').value;
     const userPages = document.querySelector('input#pages').value;
-    addBookToLibrary(userTitle, userAuthor, userPages);
+    const userStatus = document.querySelector('input[type=radio]:checked').value;
+    addBookToLibrary(userTitle, userAuthor, userPages, userStatus);
     updateTable();
     form.reset();
     formDialog.close();
 };
+
 form.addEventListener('submit', addBook);
 
 // add entries to table
