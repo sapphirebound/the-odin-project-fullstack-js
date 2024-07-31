@@ -115,10 +115,10 @@ function updateTable() {
     let entryID = 0;
     myLibrary.forEach((entry) => {
         let newRow = tbody.insertRow(entryID);
-        newRow.id = entryID; //assign bookID to row
         let cellCount = 0;
         for (const e in entry) {
             if (e === 'id') {
+                newRow.id = entry[e]; //assign bookID to row
                 continue; //skips adding bookID property as table data
             }
             else {
@@ -143,6 +143,7 @@ function getBook(target) {
     const bookIndex = myLibrary
         .map((x) => { return x.id; }) //returns array of book IDs
         .indexOf(rowID); //find index of row to delete
+    console.log(rowID);
     return bookIndex;
 }
 
@@ -163,6 +164,7 @@ function updateStatus(e) {
     const target = e.target.closest('button#updateReadButton');
     if (target) {
         const bookIndex = getBook(target);
+        console.log(bookIndex);
         let bookStatus = myLibrary[bookIndex].status;
         myLibrary[bookIndex].status =
             //conditional to check current status
