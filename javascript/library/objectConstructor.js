@@ -25,7 +25,7 @@ function addBookToLibrary(title, author, pages, status) {
 }
 
 // test entry
-addBookToLibrary('123', 'def', 123, "read");
+addBookToLibrary('Mitch Albom', 'How to Win Friends and Influence People', 123, "read");
 
 // Function to auto-add action buttons
 function actionButtons() {
