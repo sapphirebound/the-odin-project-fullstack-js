@@ -109,8 +109,8 @@ form.addEventListener('submit', addBook);
 // add entries to table
 function updateTable() {
     tbody.innerHTML = '';
+    let entryID = 0;
     myLibrary.forEach((entry) => {
-        const entryID = entry.id;
         let newRow = tbody.insertRow(entryID);
         newRow.id = entryID; //assign bookID to row
         let cellCount = 0;
@@ -126,6 +126,7 @@ function updateTable() {
         };
         let actions = newRow.insertCell(cellCount);
         actions.appendChild(actionButtons());
+        entryID += 1;
     }
     );
 }
@@ -158,8 +159,8 @@ function updateStatus(e) {
     const target = e.target.closest('button#updateReadButton');
     if (target) {
         const bookIndex = getBook(target);
-        let bookStatus = myLibrary[indexToUpdate].status;
-        myLibrary[indexToUpdate].status =
+        let bookStatus = myLibrary[bookIndex].status;
+        myLibrary[bookIndex].status =
             //conditional to check current status
             bookStatus == 'read' ? 'unread' : 'read';
         updateTable();
