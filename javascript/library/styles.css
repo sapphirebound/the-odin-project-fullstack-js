@@ -280,6 +280,10 @@ dialog {
     width: 30%;
 }
 
+dialog>#closeModal {
+    width: calc(10px + 1em);
+}
+
 dialog form {
     display: flex;
     flex-direction: column;

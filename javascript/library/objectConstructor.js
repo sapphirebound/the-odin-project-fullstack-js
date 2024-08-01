@@ -27,28 +27,29 @@ function addBookToLibrary(title, author, pages, status) {
 // test entry
 addBookToLibrary('Mitch Albom', 'How to Win Friends and Influence People', 123, "read");
 
+//inner function to add button
+
+function addActionButton(buttonText, buttonIconPath, id) {
+    const actionButton = document.createElement("button");
+    const actionButtonIcon = document.createElement("img");
+
+    actionButtonIcon.src = buttonIconPath;
+    actionButton.appendChild(actionButtonIcon);
+
+    if (buttonText) {
+        const actionButtonText = document.createElement('span');
+        actionButtonText.textContent = buttonText;
+        actionButton.appendChild(actionButtonText);
+    }
+
+    actionButton.id = id;
+    actionButton.className = 'bookActionButton';
+    return actionButton;
+}
 
 // Function to auto-add action buttons
 function actionButtons() {
     const actionDiv = document.createElement("div");
-
-    //inner function to add button
-
-    function addActionButton(buttonText, buttonIconPath, id) {
-        const actionButton = document.createElement("button");
-        const actionButtonIcon = document.createElement("img");
-        const actionButtonText = document.createElement('span');
-
-        actionButtonIcon.src = buttonIconPath;
-        actionButtonText.textContent = buttonText;
-
-        actionButton.appendChild(actionButtonIcon);
-        actionButton.appendChild(actionButtonText);
-
-        actionButton.id = id;
-        actionButton.className = 'bookActionButton';
-        return actionButton;
-    }
 
     //adding delete button
     const deleteButton = addActionButton('Delete', 'src/icons/delete.svg', 'deleteButton');
@@ -102,7 +103,11 @@ form.innerHTML = input;
 
 //create dialog to contain form
 const formDialog = document.createElement('dialog');
+const formDialogClose = document.createElement('img');
+formDialogClose.src = 'src/icons/close.svg';
+formDialogClose.id = 'closeModal';
 formDialog.className = 'addBookForm';
+formDialog.appendChild(formDialogClose);
 formDialog.appendChild(form);
 
 body.appendChild(formDialog);
@@ -191,6 +196,13 @@ function updateStatus(e) {
         updateTable();
     }
 }
+
+// close dialog action
+
+formDialogClose.addEventListener('click', (e) => {
+    formDialog.close();
+    console.log('test close');
+});
 
 tbody.addEventListener('click', updateStatus);
 tbody.addEventListener('click', deleteRow);
