@@ -230,7 +230,8 @@ table div {
 }
 
 /* button styling */
-button {
+button,
+input[type=submit] {
     background: none;
     justify-self: center;
     border-radius: 5ch;
@@ -242,10 +243,11 @@ button#addBookButton {
     border: var(--table-border);
 }
 
-button:hover {
+button:hover,
+input[type=submit]:hover {
     background-color: var(--green-border);
     color: white;
-    box-shadow: 0px 5px 10px;
+    box-shadow: 0px 5px 10px black;
 }
 
 button.bookActionButton {
@@ -259,4 +261,39 @@ button.bookActionButton {
 
 button.bookActionButton img {
     height: calc(10px + 1em);
+}
+
+/* Dialog styling */
+
+dialog::backdrop {
+    color: aliceblue;
+    -webkit-backdrop-filter: blur(3px);
+    -moz-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+dialog {
+    border: 1px solid rgb(213, 221, 228);
+    border-radius: 1ch;
+    background-color: aliceblue;
+    box-shadow: 0px 5px 10px;
+    width: 30%;
+}
+
+dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: calc(5px + 0.5em)
+}
+
+dialog form>p {
+    display: flex;
+    flex-direction: column;
+    gap: calc(5px + 0.05em);
+}
+
+dialog form>p>input {
+    border: 3px solid black;
+    border-radius: 0.5ch;
+    height: calc(15px + 1em);
 }

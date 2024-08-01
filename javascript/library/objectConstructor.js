@@ -78,20 +78,22 @@ const form = document.createElement('form');
 // adding input fields
 let input = '';
 for (property in Object.getOwnPropertyNames(sampleBook)) {
-    const formKey = Object.getOwnPropertyNames(sampleBook)[property];
-    if (formKey === 'id') {
+    let formKey = Object.getOwnPropertyNames(sampleBook)[property];
+    formKey = formKey.charAt(0).toUpperCase() + formKey.slice(1); //make key uppercase
+    if (formKey === 'Id') {
         continue;
     }
-    if (formKey === 'status') {
-        input += `<label for='${formKey}'>${formKey}</label>
-        <input type='radio' id='read' name='${formKey}' value='read'/>
-        <label for='read'>Read</label><br>
-        <input type='radio' id='unread' name='${formKey}' value='unread'/>
-        <label for='unread'>Not Read</label>`;
+    if (formKey === 'Status') {
+        input += `<section id='userStatus'><label for='${formKey}'>${formKey}</label>
+        <p id='userStatus-Read'><input type='radio' id='read' name='${formKey}' value='read'/>
+        <label for='read'>Read</label></p>
+        <p id='userStatus-unread'><input type='radio' id='unread' name='${formKey}' value='unread'/>
+        <label for='unread'>Not Read</label>
+        </section></p>`;
     }
     else {
-        input += `<label for='${formKey}'>${formKey}</label>
-        <input type='text' id='${formKey}' name='${formKey}' />`;
+        input += `<p><label for='${formKey}'>${formKey}</label>
+        <input type='text' id='${formKey}' name='${formKey}' /></p>`;
     }
 }
 input += `<input type='submit' value='Add Book' />`;
@@ -107,7 +109,7 @@ body.appendChild(formDialog);
 
 // Click add to show form
 addButton.addEventListener("click", (e) => {
-    formDialog.show();
+    formDialog.showModal();
 });
 
 // submit button
@@ -116,9 +118,9 @@ const formSubmit = document.querySelector('input[type="submit"]');
 // form submit action
 function addBook(e) {
     e.preventDefault(); //disable sending data to server
-    const userTitle = document.querySelector('input#title').value;
-    const userAuthor = document.querySelector('input#author').value;
-    const userPages = document.querySelector('input#pages').value;
+    const userTitle = document.querySelector('input#Title').value;
+    const userAuthor = document.querySelector('input#Author').value;
+    const userPages = document.querySelector('input#Pages').value;
     const userStatus = document.querySelector('input[type=radio]:checked').value;
     addBookToLibrary(userTitle, userAuthor, userPages, userStatus);
     updateTable();
