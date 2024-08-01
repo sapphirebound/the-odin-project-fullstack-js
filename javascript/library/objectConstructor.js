@@ -27,25 +27,43 @@ function addBookToLibrary(title, author, pages, status) {
 // test entry
 addBookToLibrary('Mitch Albom', 'How to Win Friends and Influence People', 123, "read");
 
+
 // Function to auto-add action buttons
 function actionButtons() {
     const actionDiv = document.createElement("div");
 
+    //inner function to add button
+
+    function addActionButton(buttonText, buttonIconPath, id) {
+        const actionButton = document.createElement("button");
+        const actionButtonIcon = document.createElement("img");
+        const actionButtonText = document.createElement('span');
+
+        actionButtonIcon.src = buttonIconPath;
+        actionButtonText.textContent = buttonText;
+
+        actionButton.appendChild(actionButtonIcon);
+        actionButton.appendChild(actionButtonText);
+
+        actionButton.id = id;
+        actionButton.className = 'bookActionButton';
+        return actionButton;
+    }
+
     //adding delete button
-    const deleteButton = document.createElement("button");
-    deleteButton.id = 'deleteButton';
-    deleteButton.textContent = "delete";
+    const deleteButton = addActionButton('Delete', 'src/icons/delete.svg', 'deleteButton');
+
 
     //adding edit button
-    const updateReadButton = document.createElement("button");
-    updateReadButton.id = 'updateReadButton';
+    const updateButton = addActionButton('Read', 'src/icons/read.svg', 'updateButton');
 
     //conditional to check if book is read or not and update status
-    updateReadButton.textContent = "Read";
 
     actionDiv.appendChild(deleteButton);
-    actionDiv.appendChild(updateReadButton);
+    actionDiv.appendChild(updateButton);
     return actionDiv;
+
+
 }
 
 // new book button
@@ -144,7 +162,6 @@ function getBook(target) {
     const bookIndex = myLibrary
         .map((x) => { return x.id; }) //returns array of book IDs
         .indexOf(rowID); //find index of row to delete
-    console.log(rowID);
     return bookIndex;
 }
 
@@ -162,10 +179,9 @@ function deleteRow(e) {
 
 // update button action
 function updateStatus(e) {
-    const target = e.target.closest('button#updateReadButton');
+    const target = e.target.closest('button#updateButton');
     if (target) {
         const bookIndex = getBook(target);
-        console.log(bookIndex);
         let bookStatus = myLibrary[bookIndex].status;
         myLibrary[bookIndex].status =
             //conditional to check current status

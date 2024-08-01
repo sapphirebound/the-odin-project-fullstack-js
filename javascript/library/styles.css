@@ -233,19 +233,30 @@ table div {
 button {
     background: none;
     justify-self: center;
+    border-radius: 5ch;
 }
 
 button#addBookButton {
-    background: none;
-    justify-self: center;
     height: calc(30px + 1em);
     width: calc(90px + 2em);
-    border-radius: 5ch;
     border: var(--table-border);
 }
 
-button#addBookButton:hover {
+button:hover {
     background-color: var(--green-border);
     color: white;
     box-shadow: 0px 5px 10px;
+}
+
+button.bookActionButton {
+    display: flex;
+    flex-direction: row;
+    height: calc(15px + 1em);
+    width: calc(60px + 2em);
+    align-items: center;
+    justify-content: space-around;
+}
+
+button.bookActionButton img {
+    height: calc(10px + 1em);
 }
