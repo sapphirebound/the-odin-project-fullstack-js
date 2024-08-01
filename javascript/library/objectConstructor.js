@@ -50,7 +50,8 @@ function actionButtons() {
 
 // new book button
 const addButton = document.createElement("button");
-addButton.textContent = "Add Book to Library";
+addButton.textContent = "+ Add Book";
+addButton.id = 'addBookButton';
 body.appendChild(addButton);
 
 // book submission form
