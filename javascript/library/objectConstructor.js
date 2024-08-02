@@ -50,14 +50,10 @@ function addActionButton(buttonText, buttonIconPath, id) {
 // Function to auto-add action buttons
 function actionButtons() {
     const actionDiv = document.createElement("div");
-
     //adding delete button
     const deleteButton = addActionButton('Delete', 'src/icons/delete.svg', 'deleteButton');
-
-
     //adding edit button
     const updateButton = addActionButton('Read', 'src/icons/read.svg', 'updateButton');
-
     //conditional to check if book is read or not and update status
 
     actionDiv.appendChild(deleteButton);
