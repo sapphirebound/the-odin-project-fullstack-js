@@ -135,10 +135,17 @@ function gameController(
         console.log(
             `Dropping ${getActivePlayer().name}'s token into position ${x + 1}, ${y + 1}`
         );
-        if (game.dropToken(x, y, getActivePlayer().token) == false): s;
-        switchPlayerTurn();
-        printRound();
-        checkWinner();
+        const checkFilled = game.dropToken(x, y, getActivePlayer().token);
+        if (checkFilled == false) {
+            console.log(
+                `The position ${x + 1}, ${y + 1} is used. Try again`
+            );
+        }
+        else {
+            switchPlayerTurn();
+            printRound();
+            checkWinner();
+        };
     };
 
 
