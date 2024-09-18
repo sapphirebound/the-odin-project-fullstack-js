@@ -51,7 +51,7 @@ function gameBoard() {
 }
 
 function gameCell() {
-    let cell = 0;
+    let cell = '';
 
     getValue = () => cell; //returns the cell
 
@@ -109,24 +109,89 @@ function gameController(
 
     let winner = '';
 
-    checkWinnerHorizontal = (board) => {
-        const winningRow = board.filter((row) => new Set(row).size === 1
-        );
-        return winningRow.length > 0 ? true : false;
+    //this function checks if there are only 1 unique key in the array
+    //this function also checks horizontal wins
+    checkWinnerLogic = (row) => {
+        const winningRow = new Set(row).size;
+        return winningRow == 1 ? true : false;
     };
 
+    checkWinnerHorizontal = (board, length) => {
+        let i = 0;
+        let winner = false;
+        while (i < length && winner == false) {
+            let winningRow = board[i];
+            winner = checkWinnerLogic(winningRow);
+            i++;
+        }
+        return winner;
+    };
 
+    checkWinnerVertical = (board, length) => {
+        let winner = false;
+        let i = 0;
+        while (winner == false && i < length) {
+            let winningCol = board
+                .map(row => row[i]);
+            console.log(winningCol);
+            winner = checkWinnerLogic(winningCol);
+            i++;
+        }
+        return winner;
+    };
+
+    checkWinnerDiagonal = (board) => {
+        const diagonalArrayTopLeft = [
+            [0, 0],
+            [1, 1],
+            [2, 2]
+        ];
+        const diagonalArrayTopRight = [
+            [0, 2],
+            [1, 1],
+            [2, 0]
+        ];
+        let winner = false;
+        let i = 0;
+        let winningRow = new Array();
+        let winningKeys = diagonalArrayTopLeft;
+        while (winner == false && i < 2) {
+            console.log(`Run ${i}`);
+
+            for (let key in winningKeys) {
+
+                let row = winningKeys[key][0];
+                let col = winningKeys[key][1];
+                console.log(board[row][col]);
+
+                winningRow.push(board[row][col]);
+            }
+            console.log(winningRow);
+            winner = checkWinnerLogic(winningRow);
+            winningRow = new Array();
+            winningKeys = diagonalArrayTopRight;
+            i++;
+        }
+        return winner;
+    };
     checkWinner = () => {
         //check if there are more than 3 tokens placed
         const filledBoard = game.returnBoard()
             .filter((row) => row
-                .filter((cell) => cell.getValue() != 0).length
+                .filter((cell) => cell.getValue() != '').length
                 > 0)
             .map(row => row.map(cell => cell.getValue()));
+        //get length of filed board
+        const filledBoardLength = filledBoard.length;
 
-        const checkWin = checkWinnerHorizontal(filledBoard);
-        console.log(checkWin);
-        console.log(filledBoard);
+        let checkWin = checkWinnerHorizontal(filledBoard, filledBoardLength);
+        if (checkWin == false) {
+            checkWin = checkWinnerVertical(filledBoard, filledBoardLength);
+            if (checkWin == false) {
+                checkWin = checkWinnerDiagonal(filledBoard);
+            }
+        }
+        console.log(`Win is ${checkWin}`);
 
         return checkWin === true ? getActivePlayer().name : null;
     };
@@ -147,12 +212,50 @@ function gameController(
             checkWinner();
         };
     };
-
-
-
     printRound();
 
-    return { playRound };
-}
+    const testRound = (direction) => {
+        const horizontalWin = [
+            [0, 0],
+            [0, 1],
+            [0, 2]
+        ];
+        const verticalWin = [
+            [0, 0],
+            [1, 0],
+            [2, 0]
+        ];
+        const diagWin1 = [
+            [0, 0],
+            [1, 1],
+            [2, 2]
+        ];
+        const diagWin2 = [
+            [0, 2],
+            [1, 1],
+            [2, 0]
+        ];
+        switch (direction) {
+            case ('horizontal'):
+                keys = horizontalWin;
+                break;
+            case ('vertical'):
+                keys = verticalWin;
+                break;
+            case ('diag1'):
+                keys = diagWin1;
+                break;
+            case ('diag2'):
+                keys = diagWin2;
+        }
+        for (key in keys) {
+            let number = keys[key];
+            game.dropToken(number[0], number[1], "X");
+        }
+        printRound();
+        checkWinner();
+    };
+    return { playRound, testRound };
+};
 
 const game = gameController();
