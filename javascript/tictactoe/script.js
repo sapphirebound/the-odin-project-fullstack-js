@@ -107,8 +107,6 @@ function gameController(
 
     //win logic
 
-    let winner = '';
-
     //this function checks if there are only 1 unique key in the array
     //this function also checks horizontal wins
     checkWinnerLogic = (row) => {
@@ -191,25 +189,32 @@ function gameController(
                 checkWin = checkWinnerDiagonal(filledBoard);
             }
         }
-        console.log(`Win is ${checkWin}`);
 
-        return checkWin === true ? getActivePlayer().name : null;
+        return checkWin === true ?
+            console.log(`Winner is ${getActivePlayer().name}`) : null;
     };
 
     const playRound = (x, y) => {
-        console.log(
-            `Dropping ${getActivePlayer().name}'s token into position ${x + 1}, ${y + 1}`
-        );
-        const checkFilled = game.dropToken(x, y, getActivePlayer().token);
-        if (checkFilled == false) {
+        //check if x,y is valid
+        if (x > 2 || y > 2) {
             console.log(
-                `The position ${x + 1}, ${y + 1} is used. Try again`
+                `Invalid input, try again`
             );
-        }
-        else {
-            switchPlayerTurn();
-            printRound();
-            checkWinner();
+        } else {
+            console.log(
+                `Dropping ${getActivePlayer().name}'s token into position ${x + 1}, ${y + 1}`
+            );
+            const checkFilled = game.dropToken(x, y, getActivePlayer().token);
+            if (checkFilled == false) {
+                console.log(
+                    `The position ${x + 1}, ${y + 1} is used. Try again`
+                );
+            }
+            else {
+                switchPlayerTurn();
+                printRound();
+                checkWinner();
+            };
         };
     };
     printRound();
@@ -259,3 +264,14 @@ function gameController(
 };
 
 const game = gameController();
+
+// DOM section
+
+const body = document.querySelector('body');
+const board = body.querySelector('#board');
+
+// Add 3x3 grid for tic tac toe
+
+// Collect the names inputted and display name
+
+// DOM game logic
